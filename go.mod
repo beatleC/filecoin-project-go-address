@@ -1,4 +1,4 @@
-module github.com/filecoin-project/go-address
+module github.com/beatlec/filecoin-project-go-address
 
 go 1.17
 
