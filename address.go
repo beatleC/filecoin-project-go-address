@@ -78,23 +78,23 @@ const (
 
 // Protocol returns the protocol used by the address.
 func (a Address) Protocol() Protocol {
-	if len(a.str) == 0 {
+	if len(a.Str) == 0 {
 		return Unknown
 	}
-	return a.str[0]
+	return a.Str[0]
 }
 
 // Payload returns the payload of the address.
 func (a Address) Payload() []byte {
-	if len(a.str) == 0 {
+	if len(a.Str) == 0 {
 		return nil
 	}
-	return []byte(a.str[1:])
+	return []byte(a.Str[1:])
 }
 
 // Bytes returns the address as bytes.
 func (a Address) Bytes() []byte {
-	return []byte(a.str)
+	return []byte(a.Str)
 }
 
 // String returns an address encoded as a string.
@@ -481,11 +481,11 @@ func (a *Address) MarshalCBOR(w io.Writer) error {
 		return fmt.Errorf("cannot marshal undefined address")
 	}
 
-	if err := cbg.WriteMajorTypeHeader(w, cbg.MajByteString, uint64(len(a.str))); err != nil {
+	if err := cbg.WriteMajorTypeHeader(w, cbg.MajByteString, uint64(len(a.Str))); err != nil {
 		return err
 	}
 
-	if _, err := io.WriteString(w, a.str); err != nil {
+	if _, err := io.WriteString(w, a.Str); err != nil {
 		return err
 	}
 
